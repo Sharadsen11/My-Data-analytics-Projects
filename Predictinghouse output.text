@@ -1,0 +1,152 @@
+Summarizing the data: 
+        Transaction date   House Age  Distance from nearest Metro station (km)  \
+count        414.000000  414.000000                                414.000000   
+mean        2013.148953   17.712560                               1083.885689   
+std            0.281995   11.392485                               1262.109595   
+min         2012.666667    0.000000                                 23.382840   
+25%         2012.916667    9.025000                                289.324800   
+50%         2013.166667   16.100000                                492.231300   
+75%         2013.416667   28.150000                               1454.279000   
+max         2013.583333   43.800000                               6488.021000   
+
+       Number of convenience stores    latitude   longitude  \
+count                    414.000000  414.000000  414.000000   
+mean                       4.094203   24.969030  121.533361   
+std                        2.945562    0.012410    0.015347   
+min                        0.000000   24.932070  121.473530   
+25%                        1.000000   24.963000  121.528085   
+50%                        4.000000   24.971100  121.538630   
+75%                        6.000000   24.977455  121.543305   
+max                       10.000000   25.014590  121.566270   
+
+       Number of bedrooms  House size (sqft)  House price of unit area  
+count          414.000000         414.000000                414.000000  
+mean             1.987923         931.475845                 37.980193  
+std              0.818875         348.910269                 13.606488  
+min              1.000000         402.000000                  7.600000  
+25%              1.000000         548.000000                 27.700000  
+50%              2.000000         975.000000                 38.450000  
+75%              3.000000        1234.750000                 46.600000  
+max              3.000000        1500.000000                117.500000  
+
+ Total No. of Missing values: 
+ Transaction date                            0
+House Age                                   0
+Distance from nearest Metro station (km)    0
+Number of convenience stores                0
+latitude                                    0
+longitude                                   0
+Number of bedrooms                          0
+House size (sqft)                           0
+House price of unit area                    0
+dtype: int64
+
+ Total No. of duplicates values: 0
+
+ Correlation: 
+                                           Transaction date  House Age  \
+Transaction date                                  1.000000   0.017542   
+House Age                                         0.017542   1.000000   
+Distance from nearest Metro station (km)          0.060880   0.025622   
+Number of convenience stores                      0.009544   0.049593   
+latitude                                          0.035016   0.054420   
+longitude                                        -0.041065  -0.048520   
+Number of bedrooms                                0.061985  -0.008756   
+House size (sqft)                                 0.068405  -0.060361   
+House price of unit area                          0.087529  -0.210567   
+
+                                          Distance from nearest Metro station (km)  \
+Transaction date                                                          0.060880   
+House Age                                                                 0.025622   
+Distance from nearest Metro station (km)                                  1.000000   
+Number of convenience stores                                             -0.602519   
+latitude                                                                 -0.591067   
+longitude                                                                -0.806317   
+Number of bedrooms                                                       -0.046856   
+House size (sqft)                                                         0.001795   
+House price of unit area                                                 -0.673613   
+
+                                          Number of convenience stores  \
+Transaction date                                              0.009544   
+House Age                                                     0.049593   
+Distance from nearest Metro station (km)                     -0.602519   
+Number of convenience stores                                  1.000000   
+latitude                                                      0.444143   
+longitude                                                     0.449099   
+Number of bedrooms                                            0.043638   
+House size (sqft)                                             0.033286   
+House price of unit area                                      0.571005   
+
+                                          latitude  longitude  \
+Transaction date                          0.035016  -0.041065   
+House Age                                 0.054420  -0.048520   
+Distance from nearest Metro station (km) -0.591067  -0.806317   
+Number of convenience stores              0.444143   0.449099   
+latitude                                  1.000000   0.412924   
+longitude                                 0.412924   1.000000   
+Number of bedrooms                        0.043921   0.041680   
+House size (sqft)                         0.031696   0.009322   
+House price of unit area                  0.546307   0.523287   
+
+                                          Number of bedrooms  \
+Transaction date                                    0.061985   
+House Age                                          -0.008756   
+Distance from nearest Metro station (km)           -0.046856   
+Number of convenience stores                        0.043638   
+latitude                                            0.043921   
+longitude                                           0.041680   
+Number of bedrooms                                  1.000000   
+House size (sqft)                                   0.752276   
+House price of unit area                            0.050265   
+
+                                          House size (sqft)  \
+Transaction date                                   0.068405   
+House Age                                         -0.060361   
+Distance from nearest Metro station (km)           0.001795   
+Number of convenience stores                       0.033286   
+latitude                                           0.031696   
+longitude                                          0.009322   
+Number of bedrooms                                 0.752276   
+House size (sqft)                                  1.000000   
+House price of unit area                           0.046489   
+
+                                          House price of unit area  
+Transaction date                                          0.087529  
+House Age                                                -0.210567  
+Distance from nearest Metro station (km)                 -0.673613  
+Number of convenience stores                              0.571005  
+latitude                                                  0.546307  
+longitude                                                 0.523287  
+Number of bedrooms                                        0.050265  
+House size (sqft)                                         0.046489  
+House price of unit area                                  1.000000  
+
+  Transaction date, House size, No. of bedrooms are insignificant variables.I am going to dropping out the variables from dataset.
+
+ Splitting data into test and train: 
+ X train shape: (289, 5) 
+ X test shape: (125, 5) 
+ Y train shape: (289,) 
+ Y test shape (125,)
+
+   We are making a base model by using test data mean value,This is to set a benchmark and to compare with our regression model.
+
+ mean value of baseline model: 
+ 3.5550353433509883
+
+ Root mean square error of baseline model: 
+ 0.41241769647263393
+
+ Root mean square error of linear regression model: 
+ 0.22829239098552584
+
+ R squared value of linear regression model: 
+ 0.6935862225018106 and 0.6662193347058207
+
+ RMSE value of Random forest model 
+ 0.189067743125593
+
+ R squared value of Random forest: 
+ 0.7898350465910287 and 0.851651329822639
+
+ Random Forest model is good performing than linear regression because of R square value is higher than linear regression.
