@@ -1,0 +1,266 @@
+#===================== Classifying prsonal income =====================
+
+ Exploratory data analysis:
+
+
+
+ Check the missing values :
+
+ age              0
+JobType          0
+EdType           0
+maritalstatus    0
+occupation       0
+relationship     0
+race             0
+gender           0
+capitalgain      0
+capitalloss      0
+hoursperweek     0
+nativecountry    0
+SalStat          0
+dtype: int64
+
+  There are  no missing Values.
+
+
+
+ Summary of numerical variables:
+
+                 age   capitalgain   capitalloss  hoursperweek
+count  31978.000000  31978.000000  31978.000000  31978.000000
+mean      38.579023   1064.360623     86.739352     40.417850
+std       13.662085   7298.596271    401.594301     12.345285
+min       17.000000      0.000000      0.000000      1.000000
+25%       28.000000      0.000000      0.000000     40.000000
+50%       37.000000      0.000000      0.000000     40.000000
+75%       48.000000      0.000000      0.000000     45.000000
+max       90.000000  99999.000000   4356.000000     99.000000
+
+
+
+ Summary of categorical variables :
+
+          JobType    EdType        maritalstatus       occupation relationship  \
+count      31978     31978                31978            31978        31978   
+unique         9        16                    7               15            6   
+top      Private   HS-grad   Married-civ-spouse   Prof-specialty      Husband   
+freq       22286     10368                14692             4038        12947   
+
+          race gender   nativecountry                        SalStat  
+count    31978  31978           31978                          31978  
+unique       5      2              41                              2  
+top      White   Male   United-States   less than or equal to 50,000  
+freq     27430  21370           29170                          24283  
+
+
+
+ #==========Frequency of each categories:
+
+ Frequency of JobType: 
+  Private             22286
+ Self-emp-not-inc     2499
+ Local-gov            2067
+ ?                    1809
+ State-gov            1279
+ Self-emp-inc         1074
+ Federal-gov           943
+ Without-pay            14
+ Never-worked            7
+Name: JobType, dtype: int64
+
+ Frequency of occupation: 
+  Prof-specialty       4038
+ Craft-repair         4030
+ Exec-managerial      3992
+ Adm-clerical         3721
+ Sales                3584
+ Other-service        3212
+ Machine-op-inspct    1966
+ ?                    1816
+ Transport-moving     1572
+ Handlers-cleaners    1350
+ Farming-fishing       989
+ Tech-support          912
+ Protective-serv       644
+ Priv-house-serv       143
+ Armed-Forces            9
+Name: occupation, dtype: int64
+
+ #================Checking the unique class================
+
+ unique class of JobType: [' ?' ' Federal-gov' ' Local-gov' ' Never-worked' ' Private'
+ ' Self-emp-inc' ' Self-emp-not-inc' ' State-gov' ' Without-pay']
+
+ unique class of occupation: [' ?' ' Adm-clerical' ' Armed-Forces' ' Craft-repair' ' Exec-managerial'
+ ' Farming-fishing' ' Handlers-cleaners' ' Machine-op-inspct'
+ ' Other-service' ' Priv-house-serv' ' Prof-specialty' ' Protective-serv'
+ ' Sales' ' Tech-support' ' Transport-moving']
+
+
+ Go back and read the data by including na_values[' ?'].
+
+
+
+ #===================== Data pre-processing=====================
+
+ age                 0
+JobType          1809
+EdType              0
+maritalstatus       0
+occupation       1816
+relationship        0
+race                0
+gender              0
+capitalgain         0
+capitalloss         0
+hoursperweek        0
+nativecountry       0
+SalStat             0
+dtype: int64
+
+
+ 1. Missing values in jobtype  = 1809. 
+  2. Missing values in occupation = 1816. 
+ 3. There are 1809 rows where two specific columns i.e.occupation & JobType 
+ have missing values.  
+  4. (1816-1809) = 7, we  still have occupation unfilled for these 7 rows. 
+ Because, jobtype is never worked.
+
+
+
+ Relationship between independent variables:
+
+ correlation: 
+                    age  capitalgain  capitalloss  hoursperweek
+age           1.000000     0.080154     0.060165      0.101599
+capitalgain   0.080154     1.000000    -0.032229      0.080432
+capitalloss   0.060165    -0.032229     1.000000      0.052417
+hoursperweek  0.101599     0.080432     0.052417      1.000000
+
+
+
+ #======== Cross tables & Data visualization============ 
+
+
+
+ Gender proportion table:
+
+
+ col_0       count
+gender           
+ Female  0.324315
+ Male    0.675685
+
+
+
+  Gender vs Salary status: 
+
+
+ SalStat   greater than 50,000   less than or equal to 50,000
+gender                                                      
+ Female              0.113678                       0.886322
+ Male                0.313837                       0.686163
+All                  0.248922                       0.751078
+
+
+
+ Frequency distribution of Salary status:
+
+
+ 75% of people's salary status is <=50,000 
+ & 25% of people's salary status is >50,000
+
+ people with age 20-45 age are high in frequency.
+
+
+
+ #==================Logistic Regression :===============
+
+ Reindexing the salary status names to 0,1.
+
+  Storing the output values in y.
+
+ Storing the values from input features in x.
+
+ Splitting the data into train and test.
+
+ Make an instance of the model.
+
+ Fitting the values for x and y.
+
+ Prediction from test data.
+
+ Confusion matrix:
+
+ [[6290  533]
+ [ 946 1280]]
+
+
+ Calculating the accuracy of this model:
+
+ 0.8365565255829374
+
+ Misclassified samples: 1479
+
+
+
+ #============Logistic Regression with removing insignificant variable======
+
+ Again Reindexing the salary status.
+
+ Removing the gender, race, Jobtype variables 
+ and repeat the process to build a model  as we did previously. 
+
+
+
+ Confusion matrix:
+
+ [[6382  441]
+ [1047 1179]]
+
+
+
+ Calculating the accuracy of this model: 
+
+ 0.8355619405459167
+
+
+
+ #============Using KNN algorithm to build model===============
+
+ Importing the library of KNN.
+
+ Storing the K nearest neighbors classifier.
+
+ Fitting the values for X and Y. 
+
+ Predict the test_x: 
+
+
+ Confusion matrix:
+
+ [[6188  635]
+ [ 855 1371]]
+
+ Calculate the accuracy score:
+
+ 0.835340921648801
+Misclassified samples: 1490
+
+
+ accuracy_score of logistic classifier = 0.8365565255829374
+
+ Misclassified samples by logistic classifier = 1479
+
+
+ accuracy score of logistic classifier without insignficant variables = 0.8355619405459167
+
+
+ Misclassified samples of KNN classifier = 1490
+
+ accuracy score of KNN classifier = 0.835340921648801
+
+
+ Logistic classifier is comparatively  good performing than KNN.  
+ But logistic classifier without insignificant variables doesn't produce better result 
